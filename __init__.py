@@ -11,12 +11,10 @@ bl_info = {
 
 import bpy
 from bpy.props import (BoolProperty, FloatProperty, StringProperty, EnumProperty)
-from bpy_extras.io_utils import (ExportHelper, orientation_helper_factory, path_reference_mode, axis_conversion)
-
-IOOBJOrientationHelper = orientation_helper_factory("IOOBJOrientationHelper", axis_forward='Z', axis_up='Y')
+from bpy_extras.io_utils import (ExportHelper, path_reference_mode)
 
 # Export panel
-class ExportOBJ(bpy.types.Operator, ExportHelper, IOOBJOrientationHelper):
+class ExportOBJ(bpy.types.Operator, ExportHelper):
     # Panel's information
     bl_idname = "export_scene.bobj_keyframes"
     bl_label = 'Export BOBJ keyframes'

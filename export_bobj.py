@@ -101,17 +101,17 @@ def stringify_keyframe(context, keyframe):
     
     return result
 
-def save(context, filepath, *):
+def save(context, filepath):
     with ProgressReport(context.window_manager) as progress:
         scene = context.scene
 
         progress.enter_substeps(1)
-        write_file(context, filepath, objects, scene, progress)
+        write_file(context, filepath, scene, progress)
         progress.leave_substeps()
 
     return {'FINISHED'}
 
-def write_file(context, filepath, objects, scene, progress=ProgressReport()):
+def write_file(context, filepath, scene, progress=ProgressReport()):
     with ProgressReportSubstep(progress, 2, "BOBJ Export path: %r" % filepath, "BOBJ Export Finished") as subprogress1:
         with open(filepath, "w", encoding="utf8", newline="\n") as f:
             fw = f.write
