@@ -2,7 +2,7 @@ bl_info = {
     "name": "BOBJ keyframes",
     "author": "McHorse",
     "version": (0, 1, 0),
-    "blender": (2, 77, 0),
+    "blender": (2, 79, 0),
     "location": "File > Export",
     "description": "Export actions (animation keyframes) into .bobj file",
     "warning": "",
