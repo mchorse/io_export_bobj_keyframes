@@ -2,7 +2,10 @@ import os
 
 import bpy
 
-from progress_report import ProgressReport, ProgressReportSubstep
+from bpy_extras.wm_utils.progress_report import (
+    ProgressReport,
+    ProgressReportSubstep,
+)
 
 # Remove spaces from given string (so it would be spaceless)
 def name_compat(name):

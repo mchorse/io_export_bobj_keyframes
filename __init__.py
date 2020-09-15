@@ -2,7 +2,7 @@ bl_info = {
     "name": "BOBJ keyframes",
     "author": "McHorse",
     "version": (0, 1, 0),
-    "blender": (2, 79, 0),
+    "blender": (2, 80, 0),
     "location": "File > Export",
     "description": "Export actions (animation keyframes) into .bobj file",
     "warning": "",
@@ -22,7 +22,7 @@ class ExportOBJ(bpy.types.Operator, ExportHelper):
 
     # Panel's properties
     filename_ext = ".bobj"
-    filter_glob = StringProperty(default="*.bobj", options={'HIDDEN'})
+    filter_glob: StringProperty(default="*.bobj", options={'HIDDEN'})
     path_mode = path_reference_mode
     check_extension = True
 
@@ -38,10 +38,20 @@ class ExportOBJ(bpy.types.Operator, ExportHelper):
 def menu_func_export(self, context):
     self.layout.operator(ExportOBJ.bl_idname, text="BOBJ keyframes (.bobj)")
 
+classes = (
+    ExportOBJ, 
+)
+
 def register():
-    bpy.utils.register_module(__name__)
-    bpy.types.INFO_MT_file_export.append(menu_func_export)
+    from bpy.utils import register_class
+    for cls in classes:
+        register_class(cls)
+
+    bpy.types.TOPBAR_MT_file_export.append(menu_func_export)
 
 def unregister():
-    bpy.utils.unregister_module(__name__)
-    bpy.types.INFO_MT_file_export.remove(menu_func_export)
+    from bpy.utils import unregister_class
+    for cls in reversed(classes):
+        unregister_class(cls)
+
+    bpy.types.TOPBAR_MT_file_export.remove(menu_func_export)
