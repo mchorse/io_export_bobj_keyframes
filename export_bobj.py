@@ -99,7 +99,7 @@ def stringify_keyframe(context, keyframe):
     f = 20 / fps
 
     interp = keyframe.interpolation
-    result = 'kf %d %f %s' % (keyframe.co[0] * f, keyframe.co[1], interp)
+    result = 'kf %f %f %s' % (float(keyframe.co[0]) * float(f), keyframe.co[1], interp)
     result += ' %f %f %f %f' % (keyframe.handle_left[0] * f, keyframe.handle_left[1], keyframe.handle_right[0] * f, keyframe.handle_right[1])
     
     return result
